@@ -52,9 +52,7 @@ app.get('/movies', (req, res) => {
     res.json(topMovies);
 });
 
-app.get('/documentation.html', (req, res) => {
-    res.sendFile('Public/documentation.html', {root: _dirname});
-});
+app.use('/documentation.html', express.static ('Public'));
 
 app.listen(8080, () => {
     console.log('Your app is listening on port 8080.');
