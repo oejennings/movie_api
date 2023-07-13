@@ -3,7 +3,6 @@ const express = require('express');
 
 const app = express();
 
-
 let topMovies = [
     {
         title: 'Clue',
@@ -57,7 +56,7 @@ app.get('/movies', (req, res) => {
     res.json(topMovies);
 });
 
-app.use('/documentation.html', express.static ('Public'));
+app.use(express.static ('Public'));
 
 app.listen(8080, () => {
     console.log('Your app is listening on port 8080.');
