@@ -44,6 +44,18 @@ let topMovies = [
     }
 ];
 
+app.get('/', (req, res) => {
+    res.send('My Favorite Movies')
+});
+
 app.get('/movies', (req, res) => {
     res.json(topMovies);
+});
+
+app.get('/documentation.html', (req, res) => {
+    res.sendFile('Public/documentation.html', {root: _dirname});
+});
+
+app.listen(8080, () => {
+    console.log('Your app is listening on port 8080.');
 });
