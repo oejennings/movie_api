@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
 
+let myLogger = (req, res, next) => {
+    console.log(req.url);
+    next();
+};
+
 let topMovies = [
     {
         title: 'Clue',
@@ -44,8 +49,10 @@ let topMovies = [
     }
 ];
 
+app.use(myLogger);
+
 app.get('/', (req, res) => {
-    res.send('My Favorite Movies')
+    res.send('My Favorite Movies!')
 });
 
 app.get('/movies', (req, res) => {
