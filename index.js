@@ -22,35 +22,35 @@ let topMovies = [
         director: 'Michael Gracey'
     },
     {
-        title: '',
-        director: ''
+        title: 'Indiana Jones',
+        director: 'Steven Spielberg'
     },
     {
-        title: '',
-        director: ''
+        title: 'Jurassic Park',
+        director: 'Steven Spielberg'
     },
     {
-        title: '',
-        director: ''
+        title: 'Murder on the Orient Express',
+        director: 'Kenneth Branagh'
     },
     {
-        title: '',
-        director: ''
+        title: 'The Silence of the Lambs',
+        director: 'Jonathan Demme'
     },
     {
-        title: '',
-        director: ''
+        title: 'Die Hard',
+        director: 'John McTiernan'
     },
     {
-        title: '',
-        director: ''
+        title: 'Sherlock Holmes',
+        director: 'Guy Ritchie'
     }
 ];
 
 app.use(morgan('common'));
 
 app.get('/', (req, res) => {
-    res.send('My Favorite Movies!')
+    res.send('My Favorite Movies!');
 });
 
 app.get('/movies', (req, res) => {
