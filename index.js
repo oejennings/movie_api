@@ -97,7 +97,7 @@ app.get('/movies/:title', (req, res) => {
     }
 });
 
-//Return data about a genre by name/title
+//Return data about a genre by name
 app.get('/movies/genre/:genreName', (req, res) => {
     const { genreName } = req.params;
     const genre = topMovies.find( movie => movie.Genre.Name == genreName).Genre;
@@ -105,9 +105,11 @@ app.get('/movies/genre/:genreName', (req, res) => {
     if (genre) {
         res.status(200).json(genre);
     } else {
-        res.status(400).send('Movie not Found')
+        res.status(400).send('Genre not Found')
     }
 });
+
+//Return data about a director by name
 
 app.use(express.static ('Public'));
 
