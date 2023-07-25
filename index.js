@@ -110,6 +110,29 @@ app.get('/movies/genre/:genreName', (req, res) => {
 });
 
 //Return data about a director by name
+app.get('/movies/director/:directorName', (req, res) => {
+    const { directorName } = req.params;
+    const director = topMovies.find( movie => movie.Director.Name == directorName).Director;
+
+    if (director) {
+        res.status(200).json(director);
+    } else {
+        res.status(400).send('Director not Found')
+    }
+});
+
+//Allow new users to register
+app.post('/users', (req, res) => {
+    const newUser = req.body;
+
+    if (newUser.name) {
+        newUser.id = uuid.v4();
+        users.push(newUser);
+        res.status(201).json(newUser)
+    } else {
+        res.status(400).send('Users need Name')
+    }
+})
 
 app.use(express.static ('Public'));
 
