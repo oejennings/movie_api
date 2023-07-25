@@ -149,6 +149,20 @@ app.put('/users/:id', (req, res) => {
     }
 });
 
+//Allows users to add a movie to favoriteMovies
+app.post('/users/:id/:movieTitle', (req, res) => {
+    const { id, movieTitle } = req.params;
+
+    let user = users.find( user => user.id == id );
+
+    if (user) {
+        user.favoriteMovies.push(movieTitle)
+        res.status(200).json(user);
+    } else {
+        res.status(400).send("No such user")
+    }
+});
+
 app.use(express.static ('Public'));
 
 app.listen(8080, () => {
