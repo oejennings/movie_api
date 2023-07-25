@@ -7,6 +7,19 @@ const app = express();
 
 app.use(bodyParser.json());
 
+let users = [
+    {
+        id: 1,
+        name: "Olivia",
+        favoriteMovies: ["Clue"]
+    },
+    {
+        id: 2,
+        name: "Sebastian",
+        favoriteMovies: []
+    }
+]
+
 let topMovies = [
     {
         title: 'Clue',
