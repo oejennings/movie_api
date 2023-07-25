@@ -177,6 +177,19 @@ app.delete('/users/:id/:movieTitle', (req, res) => {
     }
 });
 
+//Allows users to deregister
+app.delete('/users/:id', (req, res) => {
+    const { id } = req.params;
+
+    let user = users.find( user => user.id == id );
+
+    if (user) {
+        users = users.filter( user => user.id !== id);
+        res.status(200).send(`${user.id} has been deleted` );
+    } else {
+        res.status(400).send("No such user")
+    }
+});
 
 app.use(express.static ('Public'));
 
