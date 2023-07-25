@@ -35,20 +35,56 @@ let topMovies = [
         'ImageURL': 'https://www.imdb.com/title/tt0088930/mediaviewer/rm3160216832/?ref_=tt_ov_i'
     },
     {
-        title: 'Avengers',
-        director: 'Joss Whedon' 
+        'Title': 'The Avengers',
+        'Summary': 'Earths mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.',
+        'Genre': {
+            'Name': 'Action',
+            'Description': ' protagonist is thrust into a series of events that typically involve violence and physical feats'
+        },
+        'Director': {
+            'Name': 'Joss Whedon',
+            'Birth Year': '1964'
+        },
+        'ImageURL': 'https://www.imdb.com/title/tt0848228/mediaviewer/rm3955117056/?ref_=tt_ov_i'
     },
     {
-        title: 'Iron Man',
-        director: 'Jon Favreau'
+        'Title': 'Iron Man',
+        'Summary': 'After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.',
+        'Genre': {
+            'Name': 'Action',
+            'Description': 'The protagonist is thrust into a series of events that typically involve violence and physical feats'
+        },
+        'Director': {
+            'Name': 'Jon Favreau',
+            'Birth Year': '1966'
+        },
+        'ImageURL': 'https://www.imdb.com/title/tt0371746/mediaviewer/rm1544850432/?ref_=tt_ov_i'
     },
     {
-        title: 'The Greatest Showman',
-        director: 'Michael Gracey'
+        'Title': 'The Greatest Showman',
+        'Summary': 'Celebrates the birth of show business and tells of a visionary who rose from nothing to create a spectacle that became a worldwide sensation.',
+        'Genre': {
+            'Name': 'Musical',
+            'Description': 'Songs by the characters are interwoven into the narrative, sometimes accompanied by dancing.'
+        },
+        'Director': {
+            'Name': 'Michael Gracey',
+            'Birth Year': 'N/A'
+        },
+        'ImageURL': 'https://www.imdb.com/title/tt1485796/mediaviewer/rm956976896/?ref_=tt_ov_i'
     },
     {
-        title: 'Indiana Jones',
-        director: 'Steven Spielberg'
+        'Title': 'Raiders of the Lost Ark',
+        'Summary': 'In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before the Nazis can obtain its awesome powers.',
+        'Genre': {
+            'Name': 'Action',
+            'Description': 'The protagonist is thrust into a series of events that typically involve violence and physical feats'
+        },
+        'Director': {
+            'Name': 'Steven Spielberg',
+            'Birth Year': '1946'
+        },
+        'ImageURL': 'https://www.imdb.com/title/tt0082971/mediaviewer/rm2091520257/?ref_=tt_ov_i'
     },
     // {
     //     title: 'Jurassic Park',
