@@ -77,7 +77,7 @@ app.get('/movies', (req, res) => {
 //Return data about single movie
 app.get('/movies/:title', (req, res) => {
     const { title } = req.params;
-    const movie = topMovies.find( movie => movie.Title == title);
+    const movie = topMovies.find( movie => movie.title == title);
 
     if (movie) {
         res.status(200).json(movie);
