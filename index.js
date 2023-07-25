@@ -69,8 +69,21 @@ app.get('/', (req, res) => {
     res.send('My Favorite Movies!');
 });
 
+//Return a list of all movies to user
 app.get('/movies', (req, res) => {
-    res.json(topMovies);
+    res.status(200).json(topMovies);
+});
+
+//Return data about single movie
+app.get('/movies/:title', (req, res) => {
+    const { title } = req.params;
+    const movie = topMovies.find( movie => movie.Title == title);
+
+    if (movie) {
+        res.status(200).json(movie);
+    } else {
+        res.status(400).send('Movie not Found')
+    }
 });
 
 app.use(express.static ('Public'));
