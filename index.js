@@ -25,7 +25,7 @@ let topMovies = [
         'Title': 'Clue',
         'Summary': '',
         'Genre': {
-            'Name': '',
+            'Name': 'Mystery',
             'Description': ''
         },
         'Director': {
@@ -98,7 +98,16 @@ app.get('/movies/:title', (req, res) => {
 });
 
 //Return data about a genre by name/title
+app.get('/movies/genre/:genreName', (req, res) => {
+    const { genreName } = req.params;
+    const genre = topMovies.find( movie => movie.Genre.Name == genreName).Genre;
 
+    if (genre) {
+        res.status(200).json(genre);
+    } else {
+        res.status(400).send('Movie not Found')
+    }
+});
 
 app.use(express.static ('Public'));
 
