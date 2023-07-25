@@ -22,8 +22,19 @@ let users = [
 
 let topMovies = [
     {
-        title: 'Clue',
-        director: 'Jonathan Lynn'
+        'Title': 'Clue',
+        'Summary': '',
+        'Genre': {
+            'Name': '',
+            'Description': ''
+        },
+        'Director': {
+            'Name': 'Jonathan Lynn',
+            'Birth year': '',
+            'Death year': ''
+        },
+        'ImageURL': '',
+        'Featured': ''
     },
     {
         title: 'Avengers',
@@ -77,7 +88,7 @@ app.get('/movies', (req, res) => {
 //Return data about single movie
 app.get('/movies/:title', (req, res) => {
     const { title } = req.params;
-    const movie = topMovies.find( movie => movie.title == title);
+    const movie = topMovies.find( movie => movie.Title == title);
 
     if (movie) {
         res.status(200).json(movie);
@@ -85,6 +96,9 @@ app.get('/movies/:title', (req, res) => {
         res.status(400).send('Movie not Found')
     }
 });
+
+//Return data about a genre by name/title
+
 
 app.use(express.static ('Public'));
 
