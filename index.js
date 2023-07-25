@@ -23,18 +23,16 @@ let users = [
 let topMovies = [
     {
         'Title': 'Clue',
-        'Summary': '',
+        'Summary': 'Six guests are anonymously invited to a strange mansion for dinner, but after their host is killed, they must cooperate with the staff to identify the murderer as the bodies pile up.',
         'Genre': {
             'Name': 'Mystery',
-            'Description': ''
+            'Description': 'Stories focus on a puzzling crime, situation, or circumstance that needs to be solved'
         },
         'Director': {
             'Name': 'Jonathan Lynn',
-            'Birth year': '',
-            'Death year': ''
+            'Birth Year': '1943'
         },
-        'ImageURL': '',
-        'Featured': ''
+        'ImageURL': 'https://www.imdb.com/title/tt0088930/mediaviewer/rm3160216832/?ref_=tt_ov_i'
     },
     {
         title: 'Avengers',
@@ -52,26 +50,26 @@ let topMovies = [
         title: 'Indiana Jones',
         director: 'Steven Spielberg'
     },
-    {
-        title: 'Jurassic Park',
-        director: 'Steven Spielberg'
-    },
-    {
-        title: 'Murder on the Orient Express',
-        director: 'Kenneth Branagh'
-    },
-    {
-        title: 'The Silence of the Lambs',
-        director: 'Jonathan Demme'
-    },
-    {
-        title: 'Die Hard',
-        director: 'John McTiernan'
-    },
-    {
-        title: 'Sherlock Holmes',
-        director: 'Guy Ritchie'
-    }
+    // {
+    //     title: 'Jurassic Park',
+    //     director: 'Steven Spielberg'
+    // },
+    // {
+    //     title: 'Murder on the Orient Express',
+    //     director: 'Kenneth Branagh'
+    // },
+    // {
+    //     title: 'The Silence of the Lambs',
+    //     director: 'Jonathan Demme'
+    // },
+    // {
+    //     title: 'Die Hard',
+    //     director: 'John McTiernan'
+    // },
+    // {
+    //     title: 'Sherlock Holmes',
+    //     director: 'Guy Ritchie'
+    // }
 ];
 
 app.use(morgan('common'));
