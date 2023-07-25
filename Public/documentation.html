@@ -9,5 +9,91 @@
             directors, and genres. Users will also be able to sign up, update their personal information,
             and create a list of their favorite movies.
         </p>
+        <table>
+            <thead>
+                <tr>
+                    <td>Business Logic</td>
+                    <td>URL</td>
+                    <td>Query Paramaters</td>
+                    <td>HTTP Method</td>
+                    <td>Request Body Data Format</td>
+                    <td>Response Body Data Format</td>
+                </tr>  
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Returns a list of all movies to the user</td>
+                    <td>/movies</td>
+                    <td>None</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>A JSON object holding data about all the movies</td>
+                </tr>
+                <tr>
+                    <td>Returns data about a single movie by title to the user</td>
+                    <td>/movies/:title</td>
+                    <td>:title</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>A JSON object holding data about a single movie</td>
+                </tr>
+                <tr>
+                    <td>Returns data about a genre by name</td>
+                    <td>/movies/genre/:genreName</td>
+                    <td>:genreName</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>A JSON object holding data about a genre</td>
+                </tr>
+                <tr>
+                    <td>Returns data about a director</td>
+                    <td>/movies/director/:directorName</td>
+                    <td>:directorName</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>A JSON object holding data about a director</td>
+                </tr>
+                <tr>
+                    <td>Allows new users to register</td>
+                    <td>/users</td>
+                    <td>None</td>
+                    <td>POST</td>
+                    <td>A JSON object holding data about the student to add</td>
+                    <td>A JSON object holding the data about the student, including an ID</td>
+                </tr>
+                <tr>
+                    <td>Allows users to update their information</td>
+                    <td>/users/:id</td>
+                    <td>:id</td>
+                    <td>PUT</td>
+                    <td>A JSON object with the updated information</td>
+                    <td>A JSON object showing all of the users information, including the updated info</td>
+                </tr>
+                <tr>
+                    <td>Allows users to add a movie to their favorite movies</td>
+                    <td>/users/:id/:movieTitle</td>
+                    <td>:id, :movieTitle</td>
+                    <td>POST</td>
+                    <td>None</td>
+                    <td>A text showing that a movie has been added</td>
+                </tr>
+                <tr>
+                    <td>Allows users to remove a movie from their favorite movies</td>
+                    <td>/users/:id/:movieTitle</td>
+                    <td>:id, :movieTitle</td>
+                    <td>DELETE</td>
+                    <td>None</td>
+                    <td>A text showing that the movie has been removed</td>
+                </tr>
+                <tr>
+                    <td>Allows existing users to deregister</td>
+                    <td>/users/:id</td>
+                    <td>:id</td>
+                    <td>DELETE</td>
+                    <td>None</td>
+                    <td>A text showing that the user has been removed</td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>
