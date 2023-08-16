@@ -10,16 +10,17 @@ const Models = require('./models.js');
 
 const Movies = Models.Movie;
 const Users = Models.User;
+const Genres = Models.Genre;
+const Directors = Models.Director;
 
 mongoose.connect('mongod://localhost:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
 
 app.use(bodyParser.json());
 
-
 app.use(morgan('common'));
 
 app.get('/', (req, res) => {
-    res.send('My Favorite Movies!');
+    res.send('Welcome to MyFlix!');
 });
 
 //Return a list of all movies to user
