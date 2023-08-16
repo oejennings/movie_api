@@ -19,13 +19,21 @@ app.use(bodyParser.json());
 
 app.use(morgan('common'));
 
+//Default text
 app.get('/', (req, res) => {
     res.send('Welcome to MyFlix!');
 });
 
 //Return a list of all movies to user
 app.get('/movies', (req, res) => {
-    res.status(200).json(topMovies);
+    Movies.find()
+        .then((movies) => {
+            res.status(201).json(movies);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
 });
 
 //Return data about single movie
@@ -41,40 +49,56 @@ app.get('/movies/:title', (req, res) => {
 });
 
 //Return data about a genre by name
-app.get('/movies/genre/:genreName', (req, res) => {
-    const { genreName } = req.params;
-    const genre = topMovies.find( movie => movie.Genre.Name == genreName).Genre;
-
-    if (genre) {
-        res.status(200).json(genre);
-    } else {
-        res.status(400).send('Genre not Found')
-    }
+app.get('/genre/:Name', (req, res) => {
+    Genres.findOne ({Name: req.params.Name})
+        .then((genre) => {
+            res.json(genre.Description);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
 });
+  
 
 //Return data about a director by name
-app.get('/movies/director/:directorName', (req, res) => {
-    const { directorName } = req.params;
-    const director = topMovies.find( movie => movie.Director.Name == directorName).Director;
-
-    if (director) {
-        res.status(200).json(director);
-    } else {
-        res.status(400).send('Director not Found')
-    }
+app.get('/director/:Name', (req, res) => {
+    Directors.findOne({ Name: req.params.Name })
+        .then((director) => {
+            res.json(director);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
 });
 
 //Allow new users to register
 app.post('/users', (req, res) => {
-    const newUser = req.body;
-
-    if (newUser.name) {
-        newUser.id = uuid.v4();
-        users.push(newUser);
-        res.status(201).json(newUser)
-    } else {
-        res.status(400).send('Users need Name')
-    }
+    Users.findOne({ Username: req.body.Username })
+        .then((user) => {
+            if (user) {
+                return res.status(400).send(req.body.Username + "already exists")
+            } else {
+                Users.create({
+                    Username: req.body.Username,
+                    Password: req.body.Password,
+                    Email: req.body.Email,
+                    Birthday: req.body.Birthday
+                })
+                .then((user) => {
+                    res.status(201).json(user);
+                })
+                .catch((error) => {
+                    console.error(error);
+                    res.status(500).send("Error: " + error);
+                });
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            res.status(500).send("Error: " + error);
+        });
 });
 
 //Allows users to update their info
