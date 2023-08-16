@@ -39,7 +39,7 @@ let topMovies = [
         'Summary': 'Earths mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.',
         'Genre': {
             'Name': 'Action',
-            'Description': ' protagonist is thrust into a series of events that typically involve violence and physical feats'
+            'Description': 'The protagonist is thrust into a series of events that typically involve violence and physical feats'
         },
         'Director': {
             'Name': 'Joss Whedon',
@@ -89,22 +89,28 @@ let topMovies = [
     // {
     //     title: 'Jurassic Park',
     //     director: 'Steven Spielberg'
+    //     Genre: Action
     // },
     // {
     //     title: 'Murder on the Orient Express',
     //     director: 'Kenneth Branagh'
+    //     Genre: Myster
     // },
     // {
     //     title: 'The Silence of the Lambs',
     //     director: 'Jonathan Demme'
+    //     genre: thriller
+    //         description:Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience.
     // },
     // {
     //     title: 'Die Hard',
     //     director: 'John McTiernan'
+    //     Genre: action
     // },
     // {
     //     title: 'Sherlock Holmes',
     //     director: 'Guy Ritchie'
+    //     genre: mystery
     // }
 ];
 
