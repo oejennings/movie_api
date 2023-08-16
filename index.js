@@ -5,6 +5,14 @@ const express = require('express');
 
 const app = express();
 
+const mongoose = require('mongoose');
+const Models = require('./models.js');
+
+const Movies = Models.Movie;
+const Users = Models.User;
+
+mongoose.connect('mongod://localhost:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
+
 app.use(bodyParser.json());
 
 
@@ -135,3 +143,4 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Error');
 });
+
