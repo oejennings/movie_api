@@ -22,6 +22,8 @@ app.use(morgan('common'));
 const cors = require('cors');
 let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 
+const {check, validationResult} = require('express-validator');
+
 app.use(cors({
     origin: (origin, callback) => {
         if(!origin) return callback(null, true);
