@@ -19,6 +19,10 @@ app.use(bodyParser.json());
 
 app.use(morgan('common'));
 
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
+
 //Default text
 app.get('/', (req, res) => {
     res.send('Welcome to MyFlix!');
