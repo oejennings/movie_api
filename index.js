@@ -106,7 +106,12 @@ app.post('/users', (req, res) => {
 });
 
 //Allows users to update their info
-app.put('/users/:Username', async (req, res) => {
+app.put('/users/:Username', passport.authenticate('jwt', {session: false}), async (req, res) => {
+    //condition to check added here
+    if(req.user.Username !== req.params.Username){
+        return res.status(400).send('Permission denied');
+    }
+    //condition ends
    await Users.findOneAndUpdate({ Username: req.params.Username }, { $set: 
     {
         Username: req.body.Username,
@@ -115,7 +120,7 @@ app.put('/users/:Username', async (req, res) => {
         Birthday: req.body.Birthday 
     }
 },
-{ new: true })
+{ new: true }) //this line makes sure that the updated doc is returned
 .then((updatedUser) => {
     res.json(updatedUser);
 })
