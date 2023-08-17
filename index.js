@@ -29,8 +29,8 @@ app.get('/', (req, res) => {
 });
 
 //Return a list of all movies to user
-app.get('/movies', (req, res) => {
-    Movies.find()
+app.get('/movies', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    await Movies.find()
         .then((movies) => {
             res.status(201).json(movies);
         })
