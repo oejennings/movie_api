@@ -109,11 +109,11 @@ app.post('/users',
             return res.status(422).json({ errors: errors.array() });
         }
 
-    let hashedPassword = Users.hashedPassword(req.body.Password);
+    let hashedPassword = Users.hashPassword(req.body.Password);
     await Users.findOne({ Username: req.body.Username }) //Search to see if a user with the requested username already exists
         .then((user) => {
             if (user) { //if user if found, send a response it already exists
-                return res.status(400).send(req.body.Username + "already exists")
+                return res.status(400).send(req.body.Username + 'already exists')
             } else {
                 Users.create({
                     Username: req.body.Username,
@@ -126,7 +126,7 @@ app.post('/users',
                 })
                 .catch((error) => {
                     console.error(error);
-                    res.status(500).send("Error: " + error);
+                    res.status(500).send('Error: ' + error);
                 });
             }
         })
