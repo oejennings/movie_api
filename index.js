@@ -14,7 +14,6 @@ const Genres = Models.Genre;
 const Directors = Models.Director;
 
 // mongoose.connect('mongodb://127.0.0.1/myflixDB', {useNewUrlParser: true, useUnifiedTopology: true});
-
 mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 app.use(bodyParser.json());
@@ -82,7 +81,6 @@ app.get('/movies/genre/:genreName', passport.authenticate('jwt', {session: false
    });
 });
   
-
 //Return data about a director by name
 app.get('/movies/director/:directorName', passport.authenticate('jwt', {session: false}), async(req, res) => {
     await Movies.findOne({ 'Director.Name': req.params.directorName })
