@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(morgan('common'));
 
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'https://oj-movies-0c0784fe26f8.herokuapp.com/'];
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'https://oj-movies-0c0784fe26f8.herokuapp.com/', 'http://localhost:1234'];
 
 const {check, validationResult} = require('express-validator');
 
