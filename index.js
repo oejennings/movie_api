@@ -20,21 +20,21 @@ app.use(bodyParser.json());
 
 app.use(morgan('common'));
 
-// const cors = require('cors');
-// let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+const cors = require('cors');
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'https://oj-movies-0c0784fe26f8.herokuapp.com/'];
 
-// const {check, validationResult} = require('express-validator');
+const {check, validationResult} = require('express-validator');
 
-// app.use(cors({
-//     origin: (origin, callback) => {
-//         if(!origin) return callback(null, true);
-//         if(allowedOrigins.indexOf(origin) === -1){ //if a specific origin isn't found on the list of allowed origins
-//             let message = 'The CORS policy for this application does not allow access from origin' + origin;
-//             return callback(new Error(message ), false);
-//         }
-//         return callback(null, true);
-//     }
-// }));
+app.use(cors({
+    origin: (origin, callback) => {
+        if(!origin) return callback(null, true);
+        if(allowedOrigins.indexOf(origin) === -1){ //if a specific origin isn't found on the list of allowed origins
+            let message = 'The CORS policy for this application does not allow access from origin' + origin;
+            return callback(new Error(message ), false);
+        }
+        return callback(null, true);
+    }
+}));
 
 let auth = require('./auth')(app);
 const passport = require('passport');
@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
 });
 
 //Return a list of all movies to user
-app.get('/movies', passport.authenticate('jwt', {session: false}), async(req, res) => {
+app.get('/movies', async(req, res) => {
     await Movies.find()
         .then((movies) => {
             res.status(201).json(movies);
