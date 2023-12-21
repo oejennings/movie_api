@@ -13,13 +13,14 @@ const Users = Models.User;
 const Genres = Models.Genre;
 const Directors = Models.Director;
 
-// mongoose.connect('mongodb://127.0.0.1/myflixDB', {useNewUrlParser: true, useUnifiedTopology: true});
+//connect to online mongoDB 
 mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 app.use(bodyParser.json());
 
 app.use(morgan('common'));
 
+//cors controls which domains have access to my api
 const cors = require('cors');
 let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'https://oj-movies-0c0784fe26f8.herokuapp.com/', 'http://localhost:1234', 'https://oj-myflix.netlify.app', 'http://localhost:4200'];
 
@@ -45,7 +46,11 @@ app.get('/', (req, res) => {
     res.send('Welcome to MyFlix!');
 });
 
-//Return a list of all movies to user
+/**
+ * Return a list of all movies to user
+ * @function
+ * @returns {object} -List of all movies in JSON format
+*/
 app.get('/movies', passport.authenticate('jwt', {session: false}), async(req, res) => {
     await Movies.find()
         .then((movies) => {
@@ -57,7 +62,11 @@ app.get('/movies', passport.authenticate('jwt', {session: false}), async(req, re
         });
 });
 
-//Return data about single movie
+/**Return data about single movie
+ * @function
+ * @param {string} -title 
+ * @returns {object} -Data about requested movie in JSON format
+ */
 app.get('/movies/:Title', passport.authenticate('jwt', {session: false}), async(req, res) => {
     await Movies.findOne({ Title: req.params.Title })
     .then((movie) => {
@@ -69,7 +78,11 @@ app.get('/movies/:Title', passport.authenticate('jwt', {session: false}), async(
     });
 });
 
-//Return data about a genre by name
+/**Return data about a genre by name
+ * @function
+ * @param {string} -genreName
+ * @returns {object} -Data about requested genre in JSON format
+ */
 app.get('/movies/genre/:genreName', passport.authenticate('jwt', {session: false}), async(req, res) => {
    await Movies.findOne({'Genre.Name': req.params.genreName})
    .then((movie) => {
@@ -81,7 +94,11 @@ app.get('/movies/genre/:genreName', passport.authenticate('jwt', {session: false
    });
 });
   
-//Return data about a director by name
+/**Return data about a director by name
+ * @function
+ * @param {string} -directorName
+ * @returns {object} -Data about requested director in JSON format
+ */
 app.get('/movies/director/:directorName', passport.authenticate('jwt', {session: false}), async(req, res) => {
     await Movies.findOne({ 'Director.Name': req.params.directorName })
         .then((movie) => {
@@ -93,7 +110,13 @@ app.get('/movies/director/:directorName', passport.authenticate('jwt', {session:
         });
 });
 
-//Allow new users to register
+/**Allow new users to register
+ * @function
+ * @param {string} -Username
+ * @param {string} -Password
+ * @param {string} -Email
+ * @returns {object} -User info in JSON format if successful 
+ */
 app.post('/users',
     [
         check('Username', 'Username is required').isLength({min: 5}),
@@ -134,7 +157,13 @@ app.post('/users',
         });
 });
 
-//Allows users to update their info
+/**Allows users to update their info
+ * @function
+ * @param {string} -Username
+ * @param {string} -Password
+ * @param {string} -Email
+ * @returns {object} -Updated user info in JSON format
+ */
 app.put('/users/:Username', passport.authenticate('jwt', {session: false}), 
 [
     check('Username', 'Username is required').isLength({min: 5}),
@@ -171,7 +200,12 @@ app.put('/users/:Username', passport.authenticate('jwt', {session: false}),
 })
 });
 
-//Allows users to add a movie to favoriteMovies
+/**Allows users to add a movie to favoriteMovies
+ * @function
+ * @param {string} -Username
+ * @param {string} -MovieID
+ * @returns {object} -Updated user info with added favorite movie in JSON format
+ */
 app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', {session: false}), async (req, res) => {
     if(req.user.Username !== req.params.Username){
         return res.status(400).send('Permission denied');
@@ -189,7 +223,12 @@ app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', {sessi
     });
 });
 
-//Allows users to delete a movie from favoriteMovies
+/**Allows users to delete a movie from favoriteMovies
+ * @function
+ * @param {string} -Username
+ * @param {string} -MovieID
+ * @returns {object} -Updated user info with deleted favorite movie in JSON format
+ */
 app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', {session: false}), async (req, res) => {
     if(req.user.Username !== req.params.Username){
         return res.status(400).send('Permission denied');
@@ -207,7 +246,11 @@ app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', {ses
     });
 });
 
-//Allows users to deregister
+/**Allows users to deregister
+ * @function
+ * @param {string} -Username
+ * @returns {object} -Message indicating deletion of user
+ */
 app.delete('/users/:Username', passport.authenticate('jwt', {session: false}), async (req, res) => {
     if(req.user.Username !== req.params.Username){
         return res.status(400).send('Permission denied');
