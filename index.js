@@ -48,8 +48,7 @@ app.get('/', (req, res) => {
 
 /**
  * Return a list of all movies to user
- * @function
- * @returns {object} -List of all movies in JSON format
+ * @returns {Object} -List of all movies in JSON format
 */
 app.get('/movies', passport.authenticate('jwt', {session: false}), async(req, res) => {
     await Movies.find()
@@ -62,10 +61,10 @@ app.get('/movies', passport.authenticate('jwt', {session: false}), async(req, re
         });
 });
 
-/**Return data about single movie
- * @function
+/**
+ * Return data about single movie
  * @param {string} -title 
- * @returns {object} -Data about requested movie in JSON format
+ * @returns {Object} -Data about requested movie in JSON format
  */
 app.get('/movies/:Title', passport.authenticate('jwt', {session: false}), async(req, res) => {
     await Movies.findOne({ Title: req.params.Title })
@@ -78,10 +77,10 @@ app.get('/movies/:Title', passport.authenticate('jwt', {session: false}), async(
     });
 });
 
-/**Return data about a genre by name
- * @function
+/**
+ * Return data about a genre by name
  * @param {string} -genreName
- * @returns {object} -Data about requested genre in JSON format
+ * @returns {Object} -Data about requested genre in JSON format
  */
 app.get('/movies/genre/:genreName', passport.authenticate('jwt', {session: false}), async(req, res) => {
    await Movies.findOne({'Genre.Name': req.params.genreName})
@@ -94,10 +93,10 @@ app.get('/movies/genre/:genreName', passport.authenticate('jwt', {session: false
    });
 });
   
-/**Return data about a director by name
- * @function
+/**
+ * Return data about a director by name
  * @param {string} -directorName
- * @returns {object} -Data about requested director in JSON format
+ * @returns {Object} -Data about requested director in JSON format
  */
 app.get('/movies/director/:directorName', passport.authenticate('jwt', {session: false}), async(req, res) => {
     await Movies.findOne({ 'Director.Name': req.params.directorName })
@@ -110,12 +109,12 @@ app.get('/movies/director/:directorName', passport.authenticate('jwt', {session:
         });
 });
 
-/**Allow new users to register
- * @function
+/**
+ * Allow new users to register
  * @param {string} -Username
  * @param {string} -Password
  * @param {string} -Email
- * @returns {object} -User info in JSON format if successful 
+ * @returns {Object} -User info in JSON format if successful 
  */
 app.post('/users',
     [
@@ -157,8 +156,8 @@ app.post('/users',
         });
 });
 
-/**Allows users to update their info
- * @function
+/**
+ * Allows users to update their info
  * @param {string} -Username
  * @param {string} -Password
  * @param {string} -Email
@@ -200,8 +199,8 @@ app.put('/users/:Username', passport.authenticate('jwt', {session: false}),
 })
 });
 
-/**Allows users to add a movie to favoriteMovies
- * @function
+/**
+ * Allows users to add a movie to favoriteMovies
  * @param {string} -Username
  * @param {string} -MovieID
  * @returns {object} -Updated user info with added favorite movie in JSON format
@@ -223,8 +222,8 @@ app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', {sessi
     });
 });
 
-/**Allows users to delete a movie from favoriteMovies
- * @function
+/**
+ * Allows users to delete a movie from favoriteMovies
  * @param {string} -Username
  * @param {string} -MovieID
  * @returns {object} -Updated user info with deleted favorite movie in JSON format
@@ -246,8 +245,8 @@ app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', {ses
     });
 });
 
-/**Allows users to deregister
- * @function
+/**
+ * Allows users to deregister
  * @param {string} -Username
  * @returns {object} -Message indicating deletion of user
  */
