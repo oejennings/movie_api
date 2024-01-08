@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
 
 /**
  * Return a list of all movies to user
- * @returns {Object} -List of all movies in JSON format
+ * @returns {Object} - List of all movies in JSON format
 */
 app.get('/movies', passport.authenticate('jwt', {session: false}), async(req, res) => {
     await Movies.find()
@@ -64,7 +64,7 @@ app.get('/movies', passport.authenticate('jwt', {session: false}), async(req, re
 /**
  * Return data about single movie
  * @param {string} title 
- * @returns {Object} Data about requested movie in JSON format
+ * @returns {Object} - Data about requested movie in JSON format
  */
 app.get('/movies/:Title', passport.authenticate('jwt', {session: false}), async(req, res) => {
     await Movies.findOne({ Title: req.params.Title })
@@ -80,7 +80,7 @@ app.get('/movies/:Title', passport.authenticate('jwt', {session: false}), async(
 /**
  * Return data about a genre by name
  * @param {string} genreName
- * @returns {Object} Data about requested genre in JSON format
+ * @returns {Object} - Data about requested genre in JSON format
  */
 app.get('/movies/genre/:genreName', passport.authenticate('jwt', {session: false}), async(req, res) => {
    await Movies.findOne({'Genre.Name': req.params.genreName})
@@ -96,7 +96,7 @@ app.get('/movies/genre/:genreName', passport.authenticate('jwt', {session: false
 /**
  * Return data about a director by name
  * @param {string} directorName
- * @returns {Object} Data about requested director in JSON format
+ * @returns {Object} - Data about requested director in JSON format
  */
 app.get('/movies/director/:directorName', passport.authenticate('jwt', {session: false}), async(req, res) => {
     await Movies.findOne({ 'Director.Name': req.params.directorName })
@@ -114,7 +114,7 @@ app.get('/movies/director/:directorName', passport.authenticate('jwt', {session:
  * @param {string} Username
  * @param {string} Password
  * @param {string} Email
- * @returns {Object} User info in JSON format if successful 
+ * @returns {Object} - User info in JSON format if successful 
  */
 app.post('/users',
     [
@@ -161,7 +161,7 @@ app.post('/users',
  * @param {string} Username
  * @param {string} Password
  * @param {string} Email
- * @returns {object} Updated user info in JSON format
+ * @returns {object} - Updated user info in JSON format
  */
 app.put('/users/:Username', passport.authenticate('jwt', {session: false}), 
 [
@@ -203,7 +203,7 @@ app.put('/users/:Username', passport.authenticate('jwt', {session: false}),
  * Allows users to add a movie to favoriteMovies
  * @param {string} Username
  * @param {string} MovieID
- * @returns {object} Updated user info with added favorite movie in JSON format
+ * @returns {object} - Updated user info with added favorite movie in JSON format
  */
 app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', {session: false}), async (req, res) => {
     if(req.user.Username !== req.params.Username){
@@ -226,7 +226,7 @@ app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', {sessi
  * Allows users to delete a movie from favoriteMovies
  * @param {string} Username
  * @param {string} MovieID
- * @returns {object} Updated user info with deleted favorite movie in JSON format
+ * @returns {object} - Updated user info with deleted favorite movie in JSON format
  */
 app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', {session: false}), async (req, res) => {
     if(req.user.Username !== req.params.Username){
@@ -248,7 +248,7 @@ app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', {ses
 /**
  * Allows users to deregister
  * @param {string} Username
- * @returns {object} Message indicating deletion of user
+ * @returns {object} - Message indicating deletion of user
  */
 app.delete('/users/:Username', passport.authenticate('jwt', {session: false}), async (req, res) => {
     if(req.user.Username !== req.params.Username){
