@@ -22,7 +22,7 @@ app.use(morgan('common'));
 
 //cors controls which domains have access to my api
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'https://oj-movies-0c0784fe26f8.herokuapp.com/', 'http://localhost:1234', 'https://oj-myflix.netlify.app', 'http://localhost:4200'];
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'https://oj-movies-0c0784fe26f8.herokuapp.com/', 'http://localhost:1234', 'https://oj-myflix.netlify.app', 'http://localhost:4200', 'https://oejennings.github.io/myFlix-Angular-client/'];
 
 const {check, validationResult} = require('express-validator');
 
