@@ -63,7 +63,7 @@ app.get('/movies', passport.authenticate('jwt', {session: false}), async(req, re
 
 /**
  * Return data about single movie
- * @param {string} title 
+ * @param {string} title - movie title
  * @returns {Object} - Data about requested movie in JSON format
  */
 app.get('/movies/:Title', passport.authenticate('jwt', {session: false}), async(req, res) => {
